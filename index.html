@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width"> <!--Responsivo-->
+        <title> Challenge Encriptador de texto </title>
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <header>
+            <div class="Logo">
+                <img src="imagenes/Logo.png" alt="Logotipo de Alura">     
+            </div>
+        </header>
+        <main>
+           
+            <form>
+                
+                <section class="seccion1">
+                    
+                    <textarea id="encriptador" placeholder="Ingrese el texto aqui" required=""></textarea>
+
+                    <div class="inferior">
+                        <p> <img src="imagenes/exclamation.png"> Solo letras en minusculas y sin acento </p>                
+                        <section class="botones">
+                            <button type="button" value="Encriptar" class="btnEncriptar" onclick="observar()">Encriptar</button>
+                            <button type="button" value="Desencriptar" class="btnDesencriptar" onclick="observar()">Desencriptar</button>
+                        </section>               
+                    </div>
+                    
+                </section>
+
+                <section class="seccion2">
+                   
+                    <div class="lateral">
+                        <div id="lateralMunheco">
+                        <img src="imagenes/Muñeco.png" alt="Imagen de un mu;eco sentado">  
+                        <p>
+                            Ningún mensaje fue encontrado
+                        </p>              
+                        <p class="txtLateral">
+                            Ingresa el texto que desees encriptar o desencriptar.
+                        <p> 
+                        </div>
+    
+                        <div id="lateral2">
+                            <textarea id="encripLateral" ></textarea>
+                            <button type="button" class="btnCopiar" onclick="copiar()"> Copiar</button>
+                        </div>
+                    </div>
+                
+                </section>
+            </form>
+
+            <script>
+
+               
+
+
+                //Funciones------------------------------------------------------------------------------
+
+                
+                //Funcion para encriptar el texto 
+                function encriptado() {
+                    observar();
+                    var texto = document.getElementById("encriptador").value.toLowerCase();
+                    // encriptacion de texto  
+                    var txtEncriptado = texto.replace(/e/img,  "enter");
+                    var txtEncriptado = txtEncriptado.replace(/i/img,  "imes");
+                    var txtEncriptado = txtEncriptado.replace(/a/img,  "ai");
+                    var txtEncriptado = txtEncriptado.replace(/o/img,  "ober");
+                    var txtEncriptado = txtEncriptado.replace(/u/img,  "ufat");
+                    
+                    //imprimir en el textarea del lateral
+                    document.getElementById("encripLateral").innerHTML = txtEncriptado;
+                }
+
+                //Funcion para desencriptar
+                function desencriptar() {
+                    observar();
+                    var texto = document.getElementById("encriptador").value.toLowerCase();
+                    // encriptacion de texto  
+                    var txtEncriptado = texto.replace(/enter/img,  "e");
+                    var txtEncriptado = txtEncriptado.replace(/imes/img,  "i");
+                    var txtEncriptado = txtEncriptado.replace(/ai/img,  "a");
+                    var txtEncriptado = txtEncriptado.replace(/ober/img,  "o");
+                    var txtEncriptado = txtEncriptado.replace(/ufat/img,  "u");
+                    
+                    //imprimir en el textarea del lateral
+                    document.getElementById("encripLateral").innerHTML = txtEncriptado;
+                }
+                //Funcion para mostrar y ocultar el div del lateral derecho
+                function observar() {
+                    var x = document.getElementById("lateralMunheco");
+                    var y = document.getElementById("lateral2");
+                        x.style.display = "none";
+                        y.style.display = "show";
+                        y.style.display = "inherit";
+                   
+                }
+                //Funcion para copiar el texto encriptado o desencriptado
+                function copiar(){
+                    var contenido = document.querySelector("#encripLateral");
+                    contenido.select();
+                    document.execCommand("copy");
+                }
+
+                var boton = document.querySelector(".btnEncriptar");
+                boton.onclick = encriptado;
+
+                var boton2 = document.querySelector(".btnDesencriptar");
+                boton2.onclick = desencriptar;
+
+                var boton3 = document.querySelector(".btnCopiar");
+                boton3.onclick = copiar;
+                
+            </script>
+        </main>
+        <footer>
+            <p class="footer">Challenge Encriptador - Emerson Cueva </p>
+        </footer>
+    </body>
+
+</html>
